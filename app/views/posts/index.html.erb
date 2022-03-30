@@ -2,22 +2,57 @@
 
 <h1>Posts</h1>
 
-<div id="posts">
+<%
+=begin%>
+ <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
     <p>
       <%= link_to "Show this post", post %>
     </p>
   <% end %>
-</div>
+</div> 
+<%
+=end%>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col" colspan="2">Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+    <tr>
+      <th scope="row"><%= post.id %></th>
+      <td><%= post.name %></td>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+      <td><%= link_to "Show", post %></td>
+    </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<% if @posts == nil %>
+    <p> File Kosong </p>
+    <% end %>
+
 
 <%= link_to "New post", new_post_path %>
 
 <br>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
